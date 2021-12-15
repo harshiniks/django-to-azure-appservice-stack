@@ -1,0 +1,45 @@
+version: 0.1.0                                            
+
+name: Deploy a Django app to Azure
+description: A stack to deploy a Django based website to Azure app service               
+
+branding:                                                # stack branding 
+ icon: 'package'
+ color: 'black'
+
+inputs:
+  - name: AZURE_CREDENTIALS
+    description: Azure cred
+    required: true
+    is-secret: true
+  - name: AZURE_WEBAPP_NAME
+    description: Azure web app name
+    required: false
+    default: django-hello-world
+
+configs:
+  repo-metadata:
+    parameters:
+      description: 'Django app on Azure'
+      secrets:
+      - name: AZURE_CREDENTIALS
+        value: ${{inputs.AZURE_CREDENTIALS}}
+      topics:
+      - django
+      - azure
+
+  branches:
+    - name: main
+      parameters:
+        enforce-admins: true
+
+  environments:
+    - name: development
+      parameters:
+        protected-branches: false
+        allowed-branch-rules:
+          - main
+          - releases/*
+
+init:
+  uses: "stack-init.yaml"

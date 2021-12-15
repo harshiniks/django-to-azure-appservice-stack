@@ -1,0 +1,68 @@
+name: "provision stack build/ deploy for Azure app service"
+
+on:
+  workflow_dispatch:
+    inputs:
+      AZURE_WEBAPP_NAME:
+        required: false
+  
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    environment:
+       name: development
+       url: "https://${{ github.event.inputs.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: use python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.*'
+          
+      - name: Create and start virtual environment
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      - name: Collect static
+        run: python manage.py collectstatic --noinput
+    
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v2
+        with:
+          name: python-app
+          path: |
+            . 
+            !venv/
+  
+  deploy-to-webapp:
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-app
+          path: .
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/appservice-settings@v1
+        with:
+          app-name: ${{ github.event.inputs.AZURE_WEBAPP_NAME }}
+          general-settings-json: '[{ "name": "DISABLE_COLLECTSTATIC", "value": "true" }, { "name": "POST_BUILD_COMMAND",  "value": "python manage.py makemigrations && python manage.py migrate" }, { "name": "SCM_DO_BUILD_DURING_DEPLOYMENT", "value": "true" }, { "name": "DJANGO_ENV", "value": "production"}]'
+      - name: Deploy web App using GH Action azure/webapps-deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ github.event.inputs.AZURE_WEBAPP_NAME }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
