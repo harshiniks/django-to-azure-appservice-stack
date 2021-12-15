@@ -80,10 +80,10 @@ The following steps describe how to create the service principal, assign the rol
 ## How to setup local development server?
 ```
 Pre-requisites:
-1. Python3
-2. Django
-# to start a local development environment, and view in browser.
-Run following commands to install dependencies.
+- Python3
+- Django
+
+Run following commands to install dependencies and view the app in the browser:
 - sudo pip install -r requirements.txt
 - python3 manage.py migrate
 - python3 manage.py runserver
