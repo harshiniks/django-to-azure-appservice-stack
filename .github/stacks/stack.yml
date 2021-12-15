@@ -16,6 +16,7 @@ inputs:
     description: Azure web app name
     required: false
     default: django-hello-world
+    is-secret: true
 
 configs:
   repo-metadata:
@@ -24,6 +25,8 @@ configs:
       secrets:
       - name: AZURE_CREDENTIALS
         value: ${{inputs.AZURE_CREDENTIALS}}
+      - name: AZURE_WEBAPP_NAME
+        value: ${{inputs.AZURE_WEBAPP_NAME}}
       topics:
       - django
       - azure
