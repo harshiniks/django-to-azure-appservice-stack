@@ -2,9 +2,15 @@ name: "Build and Deploy to Azure"
 
 on:
   pull_request:
+    inputs:
+      AZURE_WEBAPP_NAME:
+        required: false
     branches: 
     - main
   push:
+    inputs:
+      AZURE_WEBAPP_NAME:
+        required: false
     branches:
     - main
 
