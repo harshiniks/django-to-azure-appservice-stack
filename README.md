@@ -93,7 +93,7 @@ Run following commands to install dependencies and view the app in the browser:
 ## Learn more 
 
 ### Django
-Visit [Django.com](https://www.djangoproject.com/) to view the full documentation.
+Visit [Djangoproject.com](https://www.djangoproject.com/) to view the full documentation.
 
 ### Azure Cloud
 Learn more about [Azure](https://docs.microsoft.com/en-us/azure) from the official site.
