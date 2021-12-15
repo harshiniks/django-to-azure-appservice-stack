@@ -66,3 +66,5 @@ jobs:
         with:
           app-name: ${{ github.event.inputs.AZURE_WEBAPP_NAME }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        env:
+          AZURE_WEBAPP_NAME: ${{ github.event.inputs.AZURE_WEBAPP_NAME }}
