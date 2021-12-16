@@ -14,8 +14,7 @@ inputs:
     is-secret: true
   - name: AZURE_WEBAPP_NAME
     description: Azure web app name
-    required: false
-    default: django-hello-world
+    required: true
     is-secret: true
 
 configs:
