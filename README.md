@@ -26,8 +26,8 @@ Note: Once you create a repo out of this stack, you can find your website deploy
 
 # Azure Credentials, this can be obtained using Azure cli
 - AZURE_CREDENTIALS
-
-The value of this secret is expected to be a JSON object that represents a service principal (an identifer for an application or process) that authenticates the workflow with Azure.
+```
+The value of AZURE_CREDENTIALS is expected to be a JSON object that represents a service principal (an identifer for an application or process) that authenticates the workflow with Azure.
 
 To function correctly, this service principal must be assigned the [Contributor]((https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)) role for the web app or the resource group that contains the web app.
 
@@ -72,7 +72,6 @@ The following steps describe how to create the service principal, assign the rol
       (...)
     }
     ```
-```
 
 #### Github apps installed with this stack
 ```None```
