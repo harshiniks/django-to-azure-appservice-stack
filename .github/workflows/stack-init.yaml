@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: move the file
         run: |
