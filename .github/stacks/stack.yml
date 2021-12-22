@@ -12,10 +12,10 @@ inputs:
     description: Azure cred
     required: true
     is-secret: true
-  - name: Create Azure WebApp for you?
+  - name: CREATE_AZURE_WEBAPP?
     default: true
     type: boolean
-    description: Need help in creating Azure resources
+    description: Need help in creating Azure web app?
   - name: AZURE_RESOURCE_GROUP_NAME
     required: true
     is-secret: true
