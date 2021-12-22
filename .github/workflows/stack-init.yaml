@@ -2,6 +2,9 @@ name: "provision stack build/ deploy for Azure app service"
 
 on:
   workflow_dispatch:
+   inputs:
+    CREATE_AZURE_WEBAPP:
+        required: true
   
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
@@ -62,6 +65,13 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        if: ${{ github.event.inputs.CREATE_AZURE_WEBAPP }}
+        with:
+          inlineScript: |
+            az appservice plan create --name ${{ secrets.AZURE_WEBAPP_NAME }}-plan --is-linux --resource-group ${{ AZURE_RESOURCE_GROUP_NAME }}
+            az webapp create --name ${{ secrets.AZURE_WEBAPP_NAME }} --runtime 'PYTHON|3.8' --plan ${{ secrets.AZURE_WEBAPP_NAME }}-plan --resource-group ${{ AZURE_RESOURCE_GROUP_NAME }}
       - uses: azure/appservice-settings@v1
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
