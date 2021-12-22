@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
    inputs:
     CREATE_AZURE_WEBAPP:
-     required: true
+     required: false
   
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
