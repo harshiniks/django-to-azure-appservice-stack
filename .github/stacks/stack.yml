@@ -12,7 +12,7 @@ inputs:
     description: Azure cred
     required: true
     is-secret: true
-  - name: CREATE_AZURE_WEBAPP?
+  - name: CREATE_AZURE_WEBAPP
     default: true
     type: boolean
     description: Need help in creating Azure web app?
