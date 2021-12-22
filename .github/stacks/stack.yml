@@ -13,7 +13,6 @@ inputs:
     required: true
     is-secret: true
   - name: CREATE_AZURE_WEBAPP
-    default: true
     type: boolean
     description: Need help in creating Azure web app?
   - name: AZURE_RESOURCE_GROUP_NAME
