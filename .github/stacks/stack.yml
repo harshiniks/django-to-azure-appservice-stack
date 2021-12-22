@@ -34,6 +34,8 @@ configs:
         value: ${{inputs.AZURE_CREDENTIALS}}
       - name: AZURE_WEBAPP_NAME
         value: ${{inputs.AZURE_WEBAPP_NAME}}
+      - name: AZURE_RESOURCE_GROUP_NAME
+        value: ${{inputs.AZURE_RESOURCE_GROUP_NAME}}
       topics:
       - django
       - azure
