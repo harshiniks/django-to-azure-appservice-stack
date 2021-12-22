@@ -66,7 +66,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: echo the bool
-        run: echo ${{ github.event.inputs.CREATE_AZURE_WEBAPP }}
+        run: echo ${{ secrets.AZURE_RESOURCE_GROUP_NAME }}
       - name: Azure CLI script
         uses: azure/CLI@v1
         if: ${{ github.event.inputs.CREATE_AZURE_WEBAPP == 'yes' }} 
