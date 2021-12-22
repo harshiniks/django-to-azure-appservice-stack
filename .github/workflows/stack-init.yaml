@@ -69,8 +69,8 @@ jobs:
         if: ${{ github.event.inputs.CREATE_AZURE_WEBAPP }}
         with:
           inlineScript: |
-            az appservice plan create --name ${{ secrets.AZURE_WEBAPP_NAME }}-plan --is-linux --resource-group ${{ AZURE_RESOURCE_GROUP_NAME }}
-            az webapp create --name ${{ secrets.AZURE_WEBAPP_NAME }} --runtime 'PYTHON|3.8' --plan ${{ secrets.AZURE_WEBAPP_NAME }}-plan --resource-group ${{ AZURE_RESOURCE_GROUP_NAME }}
+            az appservice plan create --name ${{ secrets.AZURE_WEBAPP_NAME }}-plan --is-linux --resource-group ${{ secrets.AZURE_RESOURCE_GROUP_NAME }}
+            az webapp create --name ${{ secrets.AZURE_WEBAPP_NAME }} --runtime 'PYTHON|3.8' --plan ${{ secrets.AZURE_WEBAPP_NAME }}-plan --resource-group ${{ secrets.AZURE_RESOURCE_GROUP_NAME }}
       - uses: azure/appservice-settings@v1
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
