@@ -21,7 +21,6 @@ jobs:
         run: |
           mv ./instance-contents/README.md ./README.md
           mv ./instance-contents/pull_request_template.md ./pull_request_template.md
-          mv ./instance-contents/build-deploy.yaml ./.github/workflows/build-deploy.yaml
           mkdir ./.github/ISSUE_TEMPLATE
           mv ./instance-contents/bug.md ./.github/ISSUE_TEMPLATE/bug.md
           mv ./instance-contents/feature_request.md ./.github/ISSUE_TEMPLATE/feature_request.md
