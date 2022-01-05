@@ -53,6 +53,6 @@ configs:
           - main
           - releases/*
 github-apps:
-- name: AWS
+ - name: AWS
 init:
   uses: "stack-init.yaml"
