@@ -52,7 +52,5 @@ configs:
         allowed-branch-rules:
           - main
           - releases/*
-github-apps:
-  - slug: azure-pipelines
 init:
   uses: "stack-init.yaml"
