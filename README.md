@@ -9,7 +9,7 @@
 
 
 ## Why should you use this stack?
-You can spin up your own Django website in seconds. 
+You can spin up your own Django website in seconds...
 
 Deployment happens on Azure Cloud via a Azure App Service.
 
